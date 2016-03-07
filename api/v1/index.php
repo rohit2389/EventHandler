@@ -62,8 +62,11 @@ $app->post('/login', function() use ($app){
  */
 $app->get('/session', function(){         
     if(!isset($_SESSION['api_key']) || (trim($_SESSION['api_key']) == '')) {
-        
+        $response['status'] = "error";
+        $response['message'] = "session does not exist";
+        echoResponse(200, $response);
     }else{
+        $response['status'] = "success";
         $response['userName'] = $_SESSION['userName'];
         $response['api_key'] = $_SESSION['api_key'];
         $response['userType'] = $_SESSION['userType'];
