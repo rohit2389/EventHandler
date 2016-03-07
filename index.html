@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<body>
+<head>
+  <title>Product Manager</title>
+  
+<!-- customised theme css -->
+  <link rel="stylesheet" href="css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="css/rdash.min.css" type="text/css" />
+  
+<!-- bootstrap deafault css -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet" href="css/bootstrap-datetimepicker.css" type="text/css" />
+
+  <!-- font style css -->
+  <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+
+  <!-- calendar css -->
+  <link href='fullcalendar-2.5.0/fullcalendar.css' rel='stylesheet' />
+  <link href='fullcalendar-2.5.0/fullcalendar.print.css' rel='stylesheet' media='print' />
+
+  <!-- toster css -->
+  <link href="css/toaster.css" rel="stylesheet">
+  
+
+</head>
+<div id="page-wrapper" class="open">
+
+    <!-- Sidebar -->
+
+    <div ng-show="userName"id="sidebar-wrapper">
+      <ul class="sidebar">
+        <li class="sidebar-main">
+          <a href="#">
+            Dashboard
+            <span class="menu-icon glyphicon glyphicon-transfer"></span>
+          </a>
+        </li>
+        <li class="sidebar-title"><span>NAVIGATION</span></li>
+        <li class="sidebar-list">
+          <a href="#/dashboard">Dashboard <span class="menu-icon fa fa-tachometer"></span></a>
+        </li>
+        <li class="sidebar-list">
+          <a href="#/calendar">Calendar <span class="menu-icon fa fa-tachometer"></span></a>
+        </li>
+        <li ng-show="userName" ng-controller="authCtrl" class="sidebar-list">
+          <a ng-click="logout();">Logout <span class="menu-icon fa fa-tachometer"></span></a>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <div class="col-xs-5">
+          <a href="#" target="_blank">
+            Contact us
+          </a>
+        </div>
+        <div class="col-xs-3">
+          <a href="#" target="_blank">
+            About
+          </a>
+        </div>
+        <div class="col-xs-4">
+          <a href="#">
+            Support
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- End Sidebar -->
+
+    <div id="content-wrapper">
+      <div class="page-content">
+
+        <!-- Header Bar -->
+
+        <div ng-show="userName" class="row header">
+          <div class="col-xs-12">
+            <div class="user pull-right">
+              <div class="item dropdown">
+                <a href="#" class="dropdown-toggle">
+                  <img class="img-circle" src="img/header.jpg">
+                </a>
+              </div>
+              <div class="item dropdown">
+               <a href="#" class="dropdown-toggle">
+                  <i class="fa fa-bell-o"></i>
+                </a>
+              </div>
+            </div>
+            <div class="meta">
+              <div class="page">
+                {{userName}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- End Header Bar -->
+
+        <!-- Main Content -->
+        <div class="row">
+            <div class="col-xs-12">
+              <div class="widget">
+                <div class="widget-body">
+                  <div ng-view="" id="ng-view"></div>
+                </div>
+              </div>
+          </div>
+      </div><!-- End Page Content -->
+    </div><!-- End Content Wrapper -->
+  </div>
+<toaster-container toaster-options="{'time-out': 2000}"></toaster-container>
+
+<!-- Libraries -->
+<script src="js/angular.min.js"></script>
+<script src="js/ui-bootstrap-tpls-0.11.2.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script src="js/angular-animate.min.js"></script>
+
+
+
+<!-- AngularJS custom codes -->
+<script src="app/app.js"></script>
+<script src="app/data.js"></script>
+<script src="app/directives.js"></script>
+<script src="app/eventsCtrl.js"></script>
+<script src="app/calCtrl.js"></script>
+<script src="app/authCtrl.js"></script>
+
+
+<script src="js/jquery.js"></script>
+
+<!-- calendar Libraries -->
+<script src='fullcalendar-2.5.0/lib/moment.min.js'></script>
+<script src='fullcalendar-2.5.0/fullcalendar.min.js'></script>
+
+<!-- Some Bootstrap Helper Libraries -->
+<script type="text/javascript" src="js/bootstrap-datetimepicker.js"></script>
+
+<!-- toastar libraries-->
+<script src="js/toaster.js"></script>
+
+
+
+</body>
+<script type="text/javascript">
+  // $("#menu-toggle").click(function(e) {
+  //         e.preventDefault();
+  //         $("#wrapper").toggleClass("toggled");
+  //       });
+</script>
+</html>
+

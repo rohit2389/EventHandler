@@ -1,0 +1,83 @@
+<style type="text/css">
+    .strong   { color: #060; border-color: #0F0;}
+    .medium   { color: #C60; border-color: #FC0;}
+    .weak     { color: #900; border-color: #F00;}
+    .strength { padding: 1px 10px; border: 2px solid; color: #FFF;}
+</style>
+<div class="breadcrumbs" id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <a href="#">Home</a>
+        </li>
+        <li class="active">SignUp</li>
+    </ul>
+</div>
+<div class="page-content">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div id="login-box" class="login-box visible widget-box no-border">
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <br/>
+                        <form name="signupForm" class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="name">Name</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control" name="name" placeholder="Name" ng-model="signup.name" required/>
+                                <small class="errorMessage" data-ng-show="signupForm.name.$dirty && signupForm.name.$error.required"> Enter name.</small>
+                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="email">Email</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                        <input type="email" class="form-control" placeholder="Email" name="email" ng-model="signup.email" focus/>
+                                        <span ng-show="signupForm.email.$error.email" class="erroMessage ">Email is not valid</span> 
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="password">Password</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="password" class="form-control" name = "password" placeholder="Password" ng-model="signup.password" complex-password required/>
+                               <small class="errorMessage" ng-show="signupForm.password.$dirty && signupForm.password.$invalid"> Enter password</small>
+                               <span class="help-inline" data-ng-show='signupForm.password.$valid && signupForm.password.$dirty' data-ng-class="strength">This password is {{strength}} ! </span>
+                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5 control-label no-padding-right" for="password2">Confirm Password</label>
+                                <div class="col-sm-7">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="password" class="form-control" name="password2" placeholder="Password Again" ng-model="signup.password2" password-match="signup.password" required/>                                
+                                <small class="errorMessage" data-ng-show="signupForm.password2.$dirty && signupForm.password2.$error.required"> Enter password again.</small>
+
+                               <small class="errorMessage" data-ng-show="signupForm.password2.$dirty && signupForm.password2.$error.passwordNoMatch && !signupForm.password2.$error.required"> Password do not match.</small>
+
+                            </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span class="lbl col-sm-5"> </span>
+                                <div class="col-sm-7">
+                                    <button type="submit" class="width-35 pull-right btn btn-sm btn-primary" ng-click="signUp(signup)" data-ng-disabled="signupForm.$invalid">
+                                        Sign Up
+                                    </button>
+                                </div>
+                            </div>
+                            </fieldset>
+                            <span class="lbl col-sm-5"> </span>
+                            <div class="col-sm-7">Already have an account? <a href="#/login">SignIn</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /.page-content -->

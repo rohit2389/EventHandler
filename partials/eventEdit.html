@@ -1,0 +1,39 @@
+
+
+    <button type="button" class="close" ng-click="cancel();">
+        <i class="fa fa-times-circle-o" style="margin:10px;color:blue;"></i>
+    </button>
+    <div class="modal-header">
+        <h3 class="modal-title">{{title}} :{{event.event_id}}</h3>
+    </div>
+    <div class="modal-body">
+        <form name="event_form" class="form-horizontal" role="form" novalidate>
+            <div style="color:red;">{{msg}}</div>
+            <form-element label="Event Name" mod="event">
+                <input type="text" class="form-control" id="title" name="event-title" placeholder="Event name" ng-model="event.event" focus required/>
+            </form-element>
+            <form-element label="Event Start" mod="event">
+                <input type="text" name="event-start" id="datetimepicker6" class="form-control" placeholder="Event Start DateTime" ng-model="event.event_start_datetime" />
+            </form-element>
+
+           <form-element label="Event End" mod="event">
+                <input type="text" name="event-end" id="datetimepicker7" class="form-control" placeholder="Event End DateTime" ng-model="event.event_end_datetime" />
+            </form-element>
+
+            <div class="space"></div>
+            <div class="space-4"></div>
+            <div class="modal-footer">
+                <form-element label="">
+                    <div class="text-right">
+                        <a class="btn btn-sm" ng-click="cancel()"><i class="ace-icon fa fa-reply"></i>Cancel</a>
+                        <button ng-click="saveProduct(event);"
+                                ng-disabled="event_form.$invalid || enableUpdate"
+                                class="btn btn-sm btn-primary"
+                                type="submit">
+                            <i class="ace-icon fa fa-check"></i>{{buttonText}}
+                        </button>
+                    </div>
+                </form-element>
+            </div>
+    </form>
+    </div>
