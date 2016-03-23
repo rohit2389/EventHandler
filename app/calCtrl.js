@@ -1,5 +1,5 @@
 
-app.controller('calCtrl', function ($scope, $modal, $filter, Data) {
+app.controller('calCtrl', function ($scope, Data) {
 $scope.calEvents=[];
 
     Data.get('events').then(function(data){

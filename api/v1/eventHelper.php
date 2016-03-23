@@ -76,11 +76,13 @@ class dbHelper {
                 $userName = $row['name'];
                 $userType = $row['user_type'];
                 $api_key = $row['api_key'];
+                $id = $row['id'];
             }
             if($password_hash){
                 if (PassHash::check_password($password_hash, $password)) {
                         // User password is correct
                         session_regenerate_id();
+                        $_SESSION['userID'] = $id;
                         $_SESSION['userName'] = $userName;
                         $_SESSION['userType'] = $userType;
                         $_SESSION['api_key'] = $api_key;

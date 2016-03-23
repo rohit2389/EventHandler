@@ -6,16 +6,16 @@
 }
 @media only screen and (min-width: 561px) {
   #page-wrapper.open {
-    padding-left: 250px;
+    /*padding-left: 250px;*/
   }
 }
 @media only screen and (max-width: 560px) {
   #page-wrapper.open {
-    padding-left: 70px;
+    /*padding-left: 70px;*/
   }
 }
 #page-wrapper.open #sidebar-wrapper {
-  left: 150px;
+  /*left: 150px;*/
 }
 
 /**

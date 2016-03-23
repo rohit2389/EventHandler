@@ -1,4 +1,4 @@
-app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
+app.controller('authCtrl', function ($scope, $rootScope, $location, Data) {
     $scope.login = {};
     $scope.signup = {};
         
@@ -23,9 +23,10 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
     $scope.logout = function () {
         Data.get('logout').then(function (results) {
             Data.toast(results);
-            $rootScope.userName = results.userName;
-            $rootScope.api_key = results.api_key;
-            $rootScope.userType = results.userType;
+            $rootScope.userID = '';
+            $rootScope.userName = '';
+            $rootScope.api_key = '';
+            $rootScope.userType = '';
             $location.path('login');
         });
     }

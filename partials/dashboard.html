@@ -1,6 +1,6 @@
 <div class="breadcrumbs" id="breadcrumbs">
     <ul class="breadcrumb">
-        <li class="active">Home /</li>
+        <li class="active">Home</li>
     </ul>
 </div>
 <button type="button" id="bt_modal" class="btn btn-danger fa fa-plus" ng-click="open(event);">&nbsp;Add New Event</button>
@@ -18,16 +18,19 @@
         </div>
 </div>
   <div class="panel-body">
-    <table class="table table-striped">
+    <table ng-hide="userType=='end_usr'" class="table table-striped">
     <tr><th ng-repeat="c in columns">{{c.text}}</th></tr>
 
     <tr ng-hide="events.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading events.........</td></tr>
-    <tr ng-show="events.length==0"><td align="center" colspan="6" style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No data found</td></tr>
+    <tr ng-show="events.length==0"><td align="center" colspan="6" style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No evnts found. Click <a id="bt_modal" ng-click="open(event);"> here</a> to create event</td></tr>
     
     <tr ng-repeat="v in events | filter:filterProduct | orderBy:'-id'" id="{{c.event_id}}" animate-on-change='c.event + c.event_start_datetime + c.event_datetime' ng-animate=" 'animate'">
-        <td>{{v.event_id}}</td><td>{{v.event}}</td><td>{{v.event_start_datetime}}</td><td>{{v.event_end_datetime}}</td>
+        <!-- <td>{{v.event_id}}</td> -->
+        <td>{{v.event}}</td>
+        <td>{{v.event_start_datetime}}</td>
+        <td>{{v.event_end_datetime}}</td>
         <td>
-            <button class="btn" ng-class="{Active:'btn-success', Inactive:''}[v.status]" ng-click="changeEventStatus(v);">{{v.status}}</button>
+            <button class="btn" ng-class="{Approved:'btn-primary', Pending:''}[v.status]" ng-click="changeEventStatus(v);">{{v.status}}</button>
         </td>
         <td style="width:100px">
             <div class="btn-group">
@@ -37,6 +40,36 @@
         </td>
     </tr>
     </table>
+    <!-- for end user -->
+    <table ng-hide="userType!='end_usr'" class="table table-striped">
+    <tr><th ng-repeat="c in columns">{{c.text}}</th></tr>
+
+    <tr ng-hide="events.length>-1"><td style="vertical-align:middle;"><i class="fa fa-cog fa-3x fa-spin"></i>&nbsp;Loading events.........</td></tr>
+    <tr ng-show="events.length==0"><td align="center" colspan="6" style="vertical-align:middle;"><i class="fa fa-ban fa-3x"></i>&nbsp;No evnts found. Click <a id="bt_modal" ng-click="open(event);"> here</a> to create event</td></tr>
+    
+    <tr ng-repeat="v in events | filter:filterProduct | orderBy:'-id'" id="{{c.event_id}}" animate-on-change='c.event + c.event_start_datetime + c.event_datetime' ng-animate=" 'animate'">
+        <!-- <td>{{v.event_id}}</td> -->
+        <td>{{v.event}}</td>
+        <td>{{v.event_start_datetime}}</td>
+        <td>{{v.event_end_datetime}}</td>
+        <td>
+            <div> {{v.status}}</div>
+        </td>
+        <td ng-hide="v.status!='Approved'" style="width:100px">
+            <div class="btn-group">
+              <button ng-disabled="v.status=='Approved'" type="button" class="btn btn-default fa fa-edit"></button>
+              <button ng-disabled="v.status=='Approved'" type="button" class="btn btn-danger fa fa-trash-o"></button>
+            </div>
+        </td>
+        <td ng-hide="v.status=='Approved'" style="width:100px">
+            <div class="btn-group">
+              <button type="button" class="btn btn-default fa fa-edit" ng-click="open(v);"></button>
+              <button type="button" class="btn btn-danger fa fa-trash-o" ng-click="deleteProduct(v);"></button>
+            </div>
+        </td>
+    </tr>
+    </table>
+
 </div>
 </div>
 </div>

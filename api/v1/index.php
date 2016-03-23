@@ -67,6 +67,7 @@ $app->get('/session', function(){
         echoResponse(200, $response);
     }else{
         $response['status'] = "success";
+        $response['userID'] = $_SESSION['userID'];
         $response['userName'] = $_SESSION['userName'];
         $response['api_key'] = $_SESSION['api_key'];
         $response['userType'] = $_SESSION['userType'];
@@ -82,7 +83,13 @@ $app->get('/session', function(){
  */
 $app->get('/events', function() { 
     global $db;
-    $rows = $db->select("events","event_id,event,event_start_datetime,event_end_datetime,status",array());
+    /* if user is End user*/
+    if ($_SESSION['userType']=='super_usr') {
+        $rows = $db->select("events","event_id,event,event_start_datetime,event_end_datetime,status",array());
+    }else if($_SESSION['userType']=='end_usr'){
+        $condition = array('user_id'=>$_SESSION['userID']);
+        $rows = $db->select("events","event_id,event,event_start_datetime,event_end_datetime,status",$condition,array());
+    }
     echoResponse(200, $rows);
 });
 

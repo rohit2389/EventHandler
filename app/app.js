@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'toaster']);
+var app = angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'toaster']);
 
 app.config(['$routeProvider',
   function($routeProvider) {
@@ -34,9 +34,15 @@ app.config(['$routeProvider',
             Data.get('session').then(function (results) {
                 if (results.api_key) {
                     $rootScope.authenticated = true;
+                    $rootScope.userID = results.userID;
                     $rootScope.userName = results.userName;
                     $rootScope.api_key = results.api_key;
                     $rootScope.userType = results.userType;
+                    var nextUrl = next.$$route.originalPath;
+                    if (nextUrl == '/signup' || nextUrl == '/login') {
+
+                        $location.path("/dashboard");
+                    }
                 } else {
                     var nextUrl = next.$$route.originalPath;
                     if (nextUrl == '/signup' || nextUrl == '/login') {

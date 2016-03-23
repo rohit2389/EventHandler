@@ -1,12 +1,12 @@
 
-app.controller('eventsCtrl', function ($scope, $modal, $filter, Data) {
+app.controller('eventsCtrl', function ($scope, $rootScope, $filter, $modal, Data) {
     
     Data.get('events').then(function(data){
         $scope.events = data.data;
     });
 
     $scope.changeEventStatus = function(event){
-        event.status = (event.status=="Active" ? "Inactive" : "Active");
+        event.status = (event.status=="Approved" ? "Pending" : "Approved");
         Data.put("approve/"+event.event_id,{status:event.status});
     };
     $scope.deleteProduct = function(event){
@@ -59,6 +59,13 @@ app.controller('eventsCtrl', function ($scope, $modal, $filter, Data) {
           // size: size,
           resolve: {
             item: function () {
+               if (p) {
+                    if ($rootScope.userType=='end_usr') {
+                        if(p.status=='Approved'){
+                            p = {};
+                        }
+                    }
+               }
               return p;
             }
           }
@@ -102,7 +109,7 @@ app.controller('eventsCtrl', function ($scope, $modal, $filter, Data) {
     };
     
  $scope.columns = [
-                    {text:"Event ID",predicate:"event_id",sortable:true,dataType:"number"},
+                    // {text:"Event ID",predicate:"event_id",sortable:true,dataType:"number"},
                     {text:"Event Title",predicate:"event",sortable:true},
                     {text:"Event Start",predicate:"event_start_datetime",sortable:true},
                     {text:"Event End",predicate:"event_end_datetime",sortable:true},
@@ -113,7 +120,7 @@ app.controller('eventsCtrl', function ($scope, $modal, $filter, Data) {
 });
 
 
-app.controller('eventEditCtrl', function ($scope, $modalInstance, item, Data) {
+app.controller('eventEditCtrl', function ($scope, $rootScope, $modalInstance, item, Data) {
 
         $scope.event = angular.copy(item);
         $scope.title = (item) ? 'Edit Event' : 'Add Event';
@@ -153,7 +160,8 @@ app.controller('eventEditCtrl', function ($scope, $modalInstance, item, Data) {
                     }
                 });
             }else{
-                event.status = 'Active';    
+                event.status = 'Pending';    
+                event.user_id = $rootScope.userID;
                 Data.post('events', event).then(function (result) {
                     if(result.status != 'error'){
                         var x = angular.copy(event);

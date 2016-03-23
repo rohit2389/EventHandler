@@ -2,7 +2,7 @@
 <html ng-app="myApp">
 <body>
 <head>
-  <title>Product Manager</title>
+  <title>Event Manager</title>
   
 <!-- customised theme css -->
   <link rel="stylesheet" href="css/custom.css" type="text/css" />
@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
 
   <!-- calendar css -->
-  <link href='fullcalendar-2.5.0/fullcalendar.css' rel='stylesheet' />
+  <link href='fullcalendar-2.5.0/fullcalendar.min.css' rel='stylesheet' />
   <link href='fullcalendar-2.5.0/fullcalendar.print.css' rel='stylesheet' media='print' />
 
   <!-- toster css -->
@@ -31,7 +31,7 @@
     <div ng-show="userName"id="sidebar-wrapper">
       <ul class="sidebar">
         <li class="sidebar-main">
-          <a href="#">
+          <a href="#/dashboard">
             Dashboard
             <span class="menu-icon glyphicon glyphicon-transfer"></span>
           </a>
@@ -143,11 +143,5 @@
 
 
 </body>
-<script type="text/javascript">
-  // $("#menu-toggle").click(function(e) {
-  //         e.preventDefault();
-  //         $("#wrapper").toggleClass("toggled");
-  //       });
-</script>
 </html>
 
